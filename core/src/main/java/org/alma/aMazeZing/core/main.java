@@ -1,5 +1,7 @@
 package org.alma.aMazeZing.core;
 
+import org.alma.aMazeZing.UI.UI;
+
 /**
  * Created on 2/9/15.
  *
@@ -7,7 +9,14 @@ package org.alma.aMazeZing.core;
  */
 public class main {
 
-    public static void main (String[] args) {
-        System.out.println("Hello World!");
+    public static void main (String[] args) throws Exception {
+
+        ModuleLoader loader = new ModuleLoader();
+
+        Player p = new Player();
+        UI ui = (UI) loader.load("UI.class");
+        ui.loadUI(p);
+
+        p.setGold(5);
     }
 }

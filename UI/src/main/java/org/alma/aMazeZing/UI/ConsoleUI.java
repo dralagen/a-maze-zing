@@ -1,7 +1,8 @@
 package org.alma.aMazeZing.UI;
 
 import org.alma.aMazeZing.core.Player;
-import org.alma.aMazeZing.map.Map;
+
+import java.util.Observable;
 
 /**
  * Created on 2/12/15.
@@ -11,12 +12,12 @@ import org.alma.aMazeZing.map.Map;
 public class ConsoleUI implements UI {
 
     @Override
-    public void printPlayer (Player p) {
-
+    public void loadUI (Player p) {
+        p.addObserver(this);
     }
 
     @Override
-    public void printMap (Map p) {
-
+    public void update (Observable o, Object arg) {
+        System.out.println(arg);
     }
 }

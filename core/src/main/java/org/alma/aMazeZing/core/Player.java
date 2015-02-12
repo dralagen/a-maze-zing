@@ -5,6 +5,7 @@ import org.alma.aMazeZing.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Player class
@@ -12,7 +13,7 @@ import java.util.List;
  * @author Maxime
  * @version 1.0 [12/02/2015]
  */
-public class Player {
+public class Player extends Observable {
 
 	private int experience;
 	
@@ -34,6 +35,8 @@ public class Player {
 	
 	public void setGold(int gold) {
 		this.gold = gold;
+		this.setChanged();
+		this.notifyObservers("Player a maintenant 5 piece d'or");
 	}
 	
 	public List<ItemStack> getInventory() {
