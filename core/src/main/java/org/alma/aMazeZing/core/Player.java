@@ -1,5 +1,9 @@
 package org.alma.aMazeZing.core;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Player class
  * 
@@ -12,7 +16,7 @@ public class Player {
 	
 	private int gold;
 	
-	private ItemStack[] inventory;
+	private List<ItemStack> inventory;
 	
 	public int getExperience() {
 		return experience;
@@ -30,15 +34,15 @@ public class Player {
 		this.gold = gold;
 	}
 	
-	public ItemStack[] getInventory() {
+	public List<ItemStack> getInventory() {
 		return inventory;
 	}
 	
-	public void setInventory(ItemStack[] inventory) {
+	public void setInventory(List<ItemStack> inventory) {
 		this.inventory = inventory;
 	}
 	
 	public void clearInventory() {
-		this.inventory = new ItemStack[];
+		this.inventory = new ArrayList<>();
 	}
 }
