@@ -10,6 +10,10 @@
 
     <modules>
         <module>core</module>
+        <module>map</module>
+        <module>item</module>
+        <module>quest</module>
+        <module>UI</module>
     </modules>
 
     <packaging>pom</packaging>
