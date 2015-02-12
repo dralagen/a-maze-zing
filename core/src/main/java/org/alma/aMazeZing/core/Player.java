@@ -1,6 +1,8 @@
 package org.alma.aMazeZing.core;
 
 
+import org.alma.aMazeZing.item.ItemStack;
+
 import java.util.ArrayList;
 import java.util.List;
 
