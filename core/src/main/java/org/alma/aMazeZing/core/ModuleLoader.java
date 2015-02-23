@@ -5,7 +5,11 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Properties;
+import java.util.Set;
+import java.util.Vector;
 
 /**
  * Created on 19/01/15.
@@ -28,13 +32,20 @@ public class ModuleLoader {
             return;
         }
 
-        try {
-            URL[] urls = new URL[1];
-            urls[0] = new File(properties.getProperty("UI.path")).toURI().toURL();
-            classLoader = new URLClassLoader(urls);
-        } catch (MalformedURLException e) {
-            classLoader = this.getClass().getClassLoader();
+        Set<URL> urls = new LinkedHashSet<>();
+
+        for (String path : properties.getProperty("path").split(",")) {
+            try {
+                urls.add(new File(path).toURI().toURL());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
+
+        URL[] urlsArray = new URL[urls.size()];
+        urls.toArray(urlsArray);
+
+        classLoader = new URLClassLoader(urlsArray);
 
     }
 

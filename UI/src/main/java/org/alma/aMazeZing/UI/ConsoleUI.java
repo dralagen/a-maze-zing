@@ -18,6 +18,12 @@ public class ConsoleUI implements UI {
 
     @Override
     public void update (Observable o, Object arg) {
-        System.out.println(arg);
+        if (o instanceof Player) {
+            printPlayer((Player) o);
+        }
+    }
+
+    private void printPlayer (Player player) {
+        System.out.println(player.getGold());
     }
 }
