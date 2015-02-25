@@ -1,4 +1,4 @@
-a-maze-zing
+a-maze-zing  [![Build Status](https://travis-ci.org/dralagen/a-maze-zing.svg?branch=master)](https://travis-ci.org/dralagen/a-maze-zing)
 ===========
 
 Compilation & launch
