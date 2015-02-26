@@ -24,6 +24,10 @@ public class Quest implements Observer {
 
     private String description;
 
+    private boolean isUnlocked;
+
+    private boolean isCompleted;
+
     private List<Dependency> dependencies;
 
     private List<Requirement> requirements;
@@ -36,6 +40,11 @@ public class Quest implements Observer {
 
     private Player player;
 
+    public Quest() {
+    	isUnlocked = false;
+    	isCompleted = false;
+    }
+    
 	public String getTitle() {
         return title;
     }
@@ -64,6 +73,14 @@ public class Quest implements Observer {
         return items;
     }
 
+    public boolean isUnlocked() {
+        return isUnlocked;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
         player.addObserver(this);
@@ -72,5 +89,15 @@ public class Quest implements Observer {
     @Override
     public void update(Observable observable, Object o) {
         //Hey, something changed !
+        if (!isUnlocked()) {
+            //Check requirements to know if this quest can be unlocked now
+
+        }
+        else
+        {
+            //Check the achievements to know if this quest is completed
+
+            //if completed, give rewards
+        }
     }
 }
