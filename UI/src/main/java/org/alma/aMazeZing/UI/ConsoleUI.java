@@ -1,6 +1,7 @@
 package org.alma.aMazeZing.UI;
 
 import org.alma.aMazeZing.core.Player;
+import org.alma.aMazeZing.plugins.UI;
 
 import java.util.Observable;
 

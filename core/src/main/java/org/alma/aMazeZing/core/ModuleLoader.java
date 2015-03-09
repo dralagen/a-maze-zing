@@ -64,4 +64,8 @@ public class ModuleLoader {
             return null;
         }
     }
+
+    public String getFolder() {
+        return (properties.getProperty("folder") != null) ? properties.getProperty("folder") : "";
+    }
 }

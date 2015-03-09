@@ -1,10 +1,6 @@
 package org.alma.aMazeZing.core;
 
-import org.alma.aMazeZing.UI.UI;
-import org.alma.aMazeZing.map.*;
-import org.alma.aMazeZing.quest.*;
-
-import java.util.ArrayList;
+import org.alma.aMazeZing.plugins.UI;
 
 /**
  * Created on 2/9/15.
@@ -24,10 +20,16 @@ public class main {
 
         p.setGold(5);
 
+        /*
         MapBuilder mb = (MapBuilder) loader.load("MapBuilder");
 
         ArrayList<Quest> quests = new ArrayList<Quest>();
         quests.add( (Quest) loader.load("quest") );
         Map m = mb.getMap(quests);
+        */
+
+        PluginsHandler PA = new PluginsHandler(loader);
+        PA.getPluginsForInterface(UI.class);
     }
+
 }

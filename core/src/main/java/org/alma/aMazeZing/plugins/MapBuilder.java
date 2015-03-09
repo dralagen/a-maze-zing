@@ -1,5 +1,6 @@
-package org.alma.aMazeZing.map;
+package org.alma.aMazeZing.plugins;
 
+import org.alma.aMazeZing.map.Map;
 import org.alma.aMazeZing.quest.Quest;
 
 import java.util.List;

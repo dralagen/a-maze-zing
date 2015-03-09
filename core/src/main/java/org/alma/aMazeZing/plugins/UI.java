@@ -1,4 +1,4 @@
-package org.alma.aMazeZing.UI;
+package org.alma.aMazeZing.plugins;
 
 import org.alma.aMazeZing.core.Player;
 
