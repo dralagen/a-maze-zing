@@ -30,6 +30,7 @@ public class main {
 
         PluginsHandler PA = new PluginsHandler(loader);
         PA.getPluginsForInterface(UI.class);
+        PA.run();
     }
 
 }
