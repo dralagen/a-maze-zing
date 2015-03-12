@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<plugins>
+    <plugin>
+        <category>Launcher</category>
+        <name>Core</name>
+        <classname>org.alma.aMazeZing.core.Core</classname>
+        <description>Un jeu génial</description>
+        <version>1.0</version>
+    </plugin>
+</plugins>

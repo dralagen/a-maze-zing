@@ -1,4 +1,4 @@
-package org.alma.aMazeZing.core;
+package org.alma.aMazeZing.platform;
 
 import java.lang.StringBuffer;
 
@@ -10,18 +10,29 @@ import java.lang.StringBuffer;
  */
 public class PluginMetadata {
 
+    String name;
+
 	String className;
 	
 	String description;
 	
 	String version;
 	
-	public PluginMetadata(String className, String desc, String version) {
+	public PluginMetadata(String name, String className, String desc, String version) {
+        this.name = name;
 		this.className = className;
 		this.description = desc;
 		this.version = version;
 	}
-	
+
+    /**
+     * Return the plugin name
+     * @return the plugin name
+     */
+    public String getName() {
+        return this.name;
+    }
+
 	/**
 	 * Return the plugin class name
 	 * @return the plugin class name
@@ -48,7 +59,8 @@ public class PluginMetadata {
 	
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("Plugin : ").append(this.className).append("\n")
+		sb.append("Plugin : ").append(this.name).append("\n")
+            .append("Classe : ").append(this.className).append("\n")
 			.append("Description : ").append(this.description).append("\n")
 			.append("Version : ").append(this.version);
 		return sb.toString();
