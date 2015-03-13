@@ -34,7 +34,16 @@ public class ModuleLoader {
     //Stores the metadatas for each plugin jar
     HashMap<String, PluginMetadata> metadatas = new HashMap<>();
 
-    public ModuleLoader () {
+    private static ModuleLoader instance = null;
+
+    public static ModuleLoader getInstance() {
+        if (instance == null) {
+            instance = new ModuleLoader();
+        }
+        return instance;
+    }
+
+    private ModuleLoader () {
 
         properties = new Properties();
         try {
