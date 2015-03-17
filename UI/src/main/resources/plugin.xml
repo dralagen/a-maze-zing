@@ -3,7 +3,7 @@
     <plugin>
         <category>UI</category>
         <name>ConsoleUI</name>
-        <classname>org.alma.aMazeZing.UI.ConsoleUI</classname>
+        <classname>org.alma.aMazeZing.map.ConsoleUI</classname>
         <description>A small and light console display</description>
         <version>1.0</version>
     </plugin>

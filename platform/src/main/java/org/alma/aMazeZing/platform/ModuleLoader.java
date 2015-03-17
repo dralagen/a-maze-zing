@@ -175,7 +175,7 @@ public class ModuleLoader {
 
     public static void main (String[] args) throws Exception {
 
-        ModuleLoader loader = new ModuleLoader();
+        ModuleLoader loader = ModuleLoader.getInstance();
 
         List<String> interfaces = loader.getPluginsForInterface(Launcher.class);
         System.out.println(interfaces.size());
