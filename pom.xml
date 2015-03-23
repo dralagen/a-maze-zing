@@ -15,6 +15,7 @@
         <module>quest</module>
         <module>UI</module>
         <module>platform</module>
+        <module>history</module>
     </modules>
 
     <packaging>pom</packaging>

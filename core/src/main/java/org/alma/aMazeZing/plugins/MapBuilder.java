@@ -1,7 +1,7 @@
 package org.alma.aMazeZing.plugins;
 
 import org.alma.aMazeZing.map.Map;
-import org.alma.aMazeZing.quest.Quest;
+import org.alma.aMazeZing.history.History;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ import java.util.List;
  * @author 
  */
 public interface MapBuilder {
-	public Map getMap(List<Quest> l);
+	public Map getMap(List<History> l);
 }
