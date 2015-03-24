@@ -39,9 +39,10 @@ public class Core implements Launcher {
 
         /* Map */
         MapBuilder map = (MapBuilder)  o;
+        Map m = map.getMap(new ArrayList<History>());
 
         System.out.println("BasicMap chargée");
-        ui.loadUI(p, map.getMap(new ArrayList<History>()));
+        ui.loadUI(p, m);
 
         return false;
     }

@@ -184,7 +184,30 @@ public class ModuleLoader {
         }
         else
         {
-            Object o = loader.load(interfaces.get(0));
+            Scanner sc = new Scanner(System.in);
+            int choix = -1;
+
+            while (choix < 0 || choix > interfaces.size()+1)
+            {
+                System.out.println("Veuillez choisir l'un des plugins suivants ou 0 pour quitter");
+                System.out.println("----------------------");
+                for (int i = 0; i < interfaces.size(); i++) {
+                    System.out.println("#" + (i+1) + " : " + interfaces.get(i));
+                }
+                System.out.println("----------------------");
+
+                choix = sc.nextInt();
+                if (choix < 0 || choix > interfaces.size()+1) {
+                    System.out.println("[Erreur] Vous devez choisir l'un des plugins principaux proposés ou Quitter(0)");
+                }
+            }
+
+            if (choix == 0) {
+                System.out.println("Fermeture de l'application...");
+                return;
+            }
+
+            Object o = loader.load(interfaces.get(choix - 1));
             ((Launcher)o).run();
         }
     }

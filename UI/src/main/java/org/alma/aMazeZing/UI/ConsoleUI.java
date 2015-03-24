@@ -5,13 +5,14 @@ import org.alma.aMazeZing.plugins.UI;
 import org.alma.aMazeZing.map.Map;
 
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created on 2/12/15.
  *
  * @author dralagen
  */
-public class ConsoleUI implements UI {
+public class ConsoleUI implements UI, Observer {
 
     private Map map;
 
@@ -19,6 +20,8 @@ public class ConsoleUI implements UI {
 
     @Override
     public void loadUI (Player p, Map m) {
+        System.out.println("--- Loading UI ---");
+
         p.addObserver(this);
         m.addObserver(this);
 

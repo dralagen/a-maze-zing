@@ -102,7 +102,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ModuleLoader</mainClass>
+                            <mainClass>ModuleLoader.class</mainClass>
                             <addClasspath>true</addClasspath>
                         </manifest>
                     </archive>
