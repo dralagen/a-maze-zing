@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <plugins>
     <plugin>
-        <category>map</category>
+        <category>MapBuilder</category>
         <name>BasicMap</name>
         <classname>org.alma.aMazeZing.map.BasicMap</classname>
         <description>A minimalistic but very cool map</description>
+        <version>1.0</version>
+    </plugin>
+    <plugin>
+        <category>MapBuilder</category>
+        <name>MapBuilderRandom</name>
+        <classname>org.alma.aMazeZing.map.MapBuilderRandom</classname>
+        <description>A random builder made by a genius</description>
         <version>1.0</version>
     </plugin>
 </plugins>

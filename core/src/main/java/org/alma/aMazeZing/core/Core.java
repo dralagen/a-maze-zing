@@ -8,6 +8,8 @@ import org.alma.aMazeZing.plugins.MapBuilder;
 import org.alma.aMazeZing.plugins.UI;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * version 1.0 <12/03/15>
@@ -32,7 +34,13 @@ public class Core implements Launcher {
         Player p = new Player();
         System.out.println("Initialisation du joueur...");
 
-        o =  ml.load("org.alma.aMazeZing.map.BasicMap");
+        List<String> l=ml.getPluginsForInterface(MapBuilder.class);
+        System.out.print(l.size()+" MapBuilder(s) : ");
+        for (String s: l){
+            System.out.println(s+", ");
+        }
+
+        o =  ml.load("org.alma.aMazeZing.map.MapBuilderRandom");
         if (o == null) {
             return false;
         }
@@ -41,7 +49,7 @@ public class Core implements Launcher {
         MapBuilder map = (MapBuilder)  o;
         Map m = map.getMap(new ArrayList<History>());
 
-        System.out.println("BasicMap chargée");
+        System.out.println("MapBuilderRandom chargée "+m.getWidth()+"-"+m.getHeight());
         ui.loadUI(p, m);
 
         return false;
