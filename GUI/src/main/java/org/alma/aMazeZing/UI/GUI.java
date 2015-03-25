@@ -11,6 +11,7 @@ import org.alma.aMazeZing.core.Player;
 import org.alma.aMazeZing.core.Core;
 import org.alma.aMazeZing.plugins.UI;
 import org.alma.aMazeZing.plugins.MapBuilder;
+import org.alma.aMazeZing.history.History;
 import org.alma.aMazeZing.quest.Quest;
 import org.alma.aMazeZing.map.Map;
 
@@ -117,8 +118,8 @@ public class GUI extends javax.swing.JFrame implements UI, Observer{
 		
  		 jLabel3.setText("Quest :");
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel( ml.getPluginsForInterface(MapBuilder.class).toArray() ));
-         jLabel4.setText("MapBuilder");
-       jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(ml.getPluginsForInterface(Quest.class).toArray() ));
+         jLabel4.setText("History");
+       jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(ml.getPluginsForInterface(History.class).toArray() ));
        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

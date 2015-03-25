@@ -18,15 +18,38 @@ public class Player extends Observable {
 	private int experience;
 	
 	private int gold;
-	
+
+    private int x;
+
+    private int y;
+
 	private List<ItemStack> inventory;
-	
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+        this.setChanged();
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+        this.setChanged();
+    }
+
 	public int getExperience() {
 		return experience;
 	}
 	
 	public void setExperience(int experience) {
 		this.experience = experience;
+        this.setChanged();
 	}
 	
 	public int getGold() {
@@ -36,7 +59,6 @@ public class Player extends Observable {
 	public void setGold(int gold) {
 		this.gold = gold;
 		this.setChanged();
-		this.notifyObservers("Player a maintenant 5 piece d'or");
 	}
 	
 	public List<ItemStack> getInventory() {
@@ -45,9 +67,12 @@ public class Player extends Observable {
 	
 	public void setInventory(List<ItemStack> inventory) {
 		this.inventory = inventory;
+        this.setChanged();
 	}
 	
 	public void clearInventory() {
 		this.inventory = new ArrayList<>();
+        this.setChanged();
 	}
+
 }

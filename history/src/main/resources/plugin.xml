@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <plugins>
     <plugin>
-        <category>history</category>
+        <category>History</category>
         <name>LittleStory</name>
         <classname>org.alma.aMazeZing.history.LittleStory</classname>
         <description>A small adventure</description>

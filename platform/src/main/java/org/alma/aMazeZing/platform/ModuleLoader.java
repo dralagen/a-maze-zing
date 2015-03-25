@@ -166,6 +166,10 @@ public class ModuleLoader {
         }
     }
 
+    public PluginMetadata getPluginMetadata(String name) {
+        return metadatas.get(name);
+    }
+
     public List<String> getPluginsForInterface(Class<?> interfaceClass) {
         List<String> intfs = pluginsList.get(interfaceClass.getSimpleName());
         return (intfs != null) ? intfs : new ArrayList<String>();

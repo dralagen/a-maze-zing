@@ -5,6 +5,7 @@ import org.alma.aMazeZing.core.*;
 import org.alma.aMazeZing.quest.*;
 import org.alma.aMazeZing.item.*;
 import org.alma.aMazeZing.history.*;
+import org.alma.aMazeZing.map.Map;
 
 import java.util.List;
 import java.util.Random;

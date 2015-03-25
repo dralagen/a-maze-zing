@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<plugins>
+    <plugin>
+        <category>Launcher</category>
+        <name>SimpleLauncher</name>
+        <classname>org.alma.aMazeZing.core.SimpleLauncher</classname>
+        <description>A cool launcher that asks you for plugins to start</description>
+        <version>1.0</version>
+    </plugin>
+</plugins>

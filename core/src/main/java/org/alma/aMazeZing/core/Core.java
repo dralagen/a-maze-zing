@@ -18,7 +18,7 @@ public class Core implements Launcher {
 
 	private Player p;
 	private Map map;
-	private List<History> histories;
+    private List<History> histories;
 
 	private MapBuilder mapBuilder;
 	private UI ui;
@@ -70,50 +70,6 @@ public class Core implements Launcher {
     public boolean run() { 
 		
 		Core c = new Core();
-
-		/*		
-        System.out.println("LANCEMENT");
-        ModuleLoader ml = ModuleLoader.getInstance();
-
-		// Player
-        Player p = new Player();
-        System.out.println("Initialisation du joueur...");
-
-
-        // UI
-		List<String> l=ml.getPluginsForInterface(UI.class);
-        System.out.print(l.size()+" UI(s) : ");
-        for (String s: l){
-            System.out.println(s+", ");
-        }
-
-        Object o = ml.load("org.alma.aMazeZing.GUI.GUI");
-        if (o == null) {
-            return false;
-        }
-        System.out.println("GUI loaded");
-
-        UI ui = (UI) o;
-		ui.loadUI(p);
-
-        /*
-		List<String> l=ml.getPluginsForInterface(MapBuilder.class);
-        System.out.print(l.size()+" MapBuilder(s) : ");
-        for (String s: l){
-            System.out.println(s+", ");
-        }
-
-        o =  ml.load("org.alma.aMazeZing.map.MapBuilderRandom");
-        if (o == null) {
-            return false;
-        }
-
-        // Map 
-        MapBuilder map = (MapBuilder)  o;
-        Map m = map.getMap(new ArrayList<History>());
-
-        System.out.println("MapBuilderRandom chargée "+m.getWidth()+"-"+m.getHeight());
-        ui.loadUI(p, m);*/
 
         return false;
     }

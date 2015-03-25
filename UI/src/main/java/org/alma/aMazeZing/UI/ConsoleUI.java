@@ -19,7 +19,7 @@ public class ConsoleUI implements UI, Observer {
 
     private Player p;
 
-	private 	Core core;
+	private Core core;
 
 	public void loadUI (Core c) {
 		core = c;
@@ -42,7 +42,7 @@ public class ConsoleUI implements UI, Observer {
 		// addObservers
 
         if (o instanceof Player) {
-            printPlayer((Player) o);
+            printPlayer(p);
         }
 		else if (o instanceof Map) {
             //printMap((Map) o);
