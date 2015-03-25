@@ -3,6 +3,7 @@ package org.alma.aMazeZing.map;
 import org.alma.aMazeZing.item.ItemStack;
 import org.alma.aMazeZing.core.Pair;
 import org.alma.aMazeZing.core.Position;
+import org.alma.aMazeZing.core.Player;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -26,6 +27,30 @@ public class Map extends Observable {
 		width = i;
 		height = j;
 	}
+
+    public void moveLeft(Player p) {
+        if (p.getX() > 0) {
+            p.setX(p.getX()-1);
+        }
+    }
+
+    public void moveTop(Player p) {
+        if (p.getY() > 0) {
+            p.setY(p.getY() - 1);
+        }
+    }
+
+    public void moveRight(Player p) {
+        if (p.getX() < width-1) {
+            p.setX(p.getX()+1);
+        }
+    }
+
+    public void moveBottom(Player p) {
+        if (p.getY() < height - 1) {
+            p.setY(p.getY() + 1);
+        }
+    }
 
 	public int getWidth(){
 		return width;

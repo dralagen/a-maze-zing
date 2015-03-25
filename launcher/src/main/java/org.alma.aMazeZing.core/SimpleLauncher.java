@@ -5,6 +5,7 @@ import org.alma.aMazeZing.map.Map;
 import org.alma.aMazeZing.plugins.MapBuilder;
 import org.alma.aMazeZing.plugins.UI;
 import org.alma.aMazeZing.platform.ModuleLoader;
+import org.alma.aMazeZing.core.Player;
 import org.alma.aMazeZing.platform.Launcher;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -45,6 +46,9 @@ public class SimpleLauncher implements Launcher, ActionListener
 
     public boolean start() {
 
+        //Player
+        Player player = new Player();
+
         //UI
         Object o = ml.load(pw.getUiPlugin());
         if (o == null) {
@@ -72,9 +76,12 @@ public class SimpleLauncher implements Launcher, ActionListener
 
         boolean finished = false;
 
-        /*while (!finished) {
+        ui.loadPlayer(player);
+        ui.loadMap(m);
 
-        }*/
+        while (!ui.isFinished()) {
+            ui.paint();
+        }
 
         System.out.println("--- Fin ---");
         return true;

@@ -25,6 +25,11 @@ public class Player extends Observable {
 
 	private List<ItemStack> inventory;
 
+    public Player() {
+        this.x = 0;
+        this.y = 0;
+    }
+
     public int getY() {
         return y;
     }

@@ -24,52 +24,13 @@ public class Core implements Launcher {
 	private UI ui;
 
 	public Core(){
-		System.out.println("LANCEMENT");
-        ModuleLoader ml = ModuleLoader.getInstance();
 
-		/* Player */
-        p = new Player();
-        System.out.println("Initialisation du joueur...");
-
-		map=null;
-		histories = new ArrayList<History>();
-
-		List<String> l=ml.getPluginsForInterface(UI.class);
-		
-		/*
-       	if (l.size()==0)
-			exception;
-		*/		
-
-		UI ui = (UI) ml.load(l.get(0));
-		ui.loadUI(this);
-			
-	} 
-
-	public void setUI(UI newUi){
-		ui.close();
-		ui = newUi;
-		ui.loadUI(this);
-	}
-
-	public void setMapBuiler(MapBuilder mb){
-		mapBuilder = mb;
-		map = mapBuilder.getMap(histories);
-	}
-
-	public Player getPlayer(){
-		return p;
-	}
-
-	public Map getMap(){
-		return map;
-	}
-	
+    }
 
     @Override
     public boolean run() { 
 		
-		Core c = new Core();
+		//Do nothing
 
         return false;
     }
