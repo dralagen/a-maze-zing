@@ -17,6 +17,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.*;
 import java.util.jar.JarFile;
+import java.util.zip.ZipEntry;
 
 /**
  * Created on 19/01/15.
@@ -88,51 +89,48 @@ public class ModuleLoader {
                     try {
 
                         JarFile jf = new JarFile(f.getAbsolutePath());
-                        InputStream in = jf.getInputStream(jf.getEntry("plugin.xml"));
+                        ZipEntry entry = jf.getEntry("plugin.xml");
 
-                        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                        DocumentBuilder builder = factory.newDocumentBuilder();
-                        Document document = builder.parse(in);
+                        if (entry != null) {
+                            InputStream in = jf.getInputStream(entry);
 
-                        Element root = document.getDocumentElement();
+                            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                            DocumentBuilder builder = factory.newDocumentBuilder();
+                            Document document = builder.parse(in);
 
-                        NodeList racineNoeuds = root.getChildNodes();
-                        int nbRacineNoeuds = racineNoeuds.getLength();
+                            Element root = document.getDocumentElement();
 
-                        //Retrieve plugins data
-                        for (int i = 0; i < nbRacineNoeuds;i++) {
-                            if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
-                                Element plugin = (Element) racineNoeuds.item(i);
+                            NodeList racineNoeuds = root.getChildNodes();
+                            int nbRacineNoeuds = racineNoeuds.getLength();
 
-                                Element category = (Element) plugin.getElementsByTagName("category").item(0);
-                                Element name = (Element) plugin.getElementsByTagName("name").item(0);
-                                Element className = (Element) plugin.getElementsByTagName("classname").item(0);
-                                Element description = (Element) plugin.getElementsByTagName("description").item(0);
-                                Element version = (Element) plugin.getElementsByTagName("version").item(0);
+                            //Retrieve plugins data
+                            for (int i = 0; i < nbRacineNoeuds; i++) {
+                                if (racineNoeuds.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                                    Element plugin = (Element) racineNoeuds.item(i);
 
-                                //Add the plugins name to the plugins list
-                                if (pluginsList.get(category.getTextContent()) == null) {
-                                    pluginsList.put(category.getTextContent(), new ArrayList<String>());
+                                    Element category = (Element) plugin.getElementsByTagName("category").item(0);
+                                    Element name = (Element) plugin.getElementsByTagName("name").item(0);
+                                    Element className = (Element) plugin.getElementsByTagName("classname").item(0);
+                                    Element description = (Element) plugin.getElementsByTagName("description").item(0);
+                                    Element version = (Element) plugin.getElementsByTagName("version").item(0);
+
+                                    //Add the plugins name to the plugins list
+                                    if (pluginsList.get(category.getTextContent()) == null) {
+                                        pluginsList.put(category.getTextContent(), new ArrayList<String>());
+                                    }
+                                    pluginsList.get(category.getTextContent()).add(className.getTextContent());
+
+                                    //Then add the plugins metadatas to the plugins metadata list
+                                    metadatas.put(className.getTextContent(),
+                                            new PluginMetadata(name.getTextContent(),
+                                                    className.getTextContent(),
+                                                    description.getTextContent(),
+                                                    version.getTextContent())
+                                    );
                                 }
-                                pluginsList.get(category.getTextContent()).add(className.getTextContent());
-
-                                //Then add the plugins metadatas to the plugins metadata list
-                                metadatas.put(className.getTextContent(),
-                                    new PluginMetadata(name.getTextContent(),
-                                        className.getTextContent(),
-                                        description.getTextContent(),
-                                        version.getTextContent())
-                                );
                             }
                         }
-
-                    } catch (ParserConfigurationException e) {
-                        e.printStackTrace();
-                    }
-                    catch (SAXException e) {
-                        e.printStackTrace();
-                    }
-                    catch (IOException e) {
+                    } catch (ParserConfigurationException | SAXException | IOException e) {
                         e.printStackTrace();
                     }
 
