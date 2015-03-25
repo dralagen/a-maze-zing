@@ -2,9 +2,9 @@
 <plugins>
     <plugin>
         <category>UI</category>
-        <name>ConsoleUI</name>
-        <classname>org.alma.aMazeZing.UI.ConsoleUI</classname>
-        <description>A small and light console display</description>
+        <name>GUI</name>
+        <classname>org.alma.aMazeZing.GUI.GUI</classname>
+        <description>A small and light graphic display</description>
         <version>1.0</version>
     </plugin>
 </plugins>

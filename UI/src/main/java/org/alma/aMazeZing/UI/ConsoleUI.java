@@ -1,6 +1,7 @@
 package org.alma.aMazeZing.UI;
 
 import org.alma.aMazeZing.core.Player;
+import org.alma.aMazeZing.core.Core;
 import org.alma.aMazeZing.plugins.UI;
 import org.alma.aMazeZing.map.Map;
 
@@ -18,22 +19,35 @@ public class ConsoleUI implements UI, Observer {
 
     private Player p;
 
-    @Override
-    public void loadUI (Player p, Map m) {
-        System.out.println("--- Loading UI ---");
+	private 	Core core;
 
-        p.addObserver(this);
-        m.addObserver(this);
+	public void loadUI (Core c) {
+		core = c;
+		p = core.getPlayer();
 
-        this.map = m;
+		p.addObserver(this);
         this.p = p;
-    }
+
+		//printPluginChoices
+
+		//printPlayer
+		//printMap
+
+	}
+
+	public void close(){}
 
     @Override
     public void update (Observable o, Object arg) {
+		// addObservers
+
         if (o instanceof Player) {
             printPlayer((Player) o);
         }
+		else if (o instanceof Map) {
+            //printMap((Map) o);
+        }
+
     }
 
     private void printPlayer (Player player) {

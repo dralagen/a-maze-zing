@@ -1,5 +1,6 @@
 package org.alma.aMazeZing.plugins;
 
+import org.alma.aMazeZing.core.Core;
 import org.alma.aMazeZing.core.Player;
 import org.alma.aMazeZing.map.Map;
 
@@ -12,6 +13,8 @@ import java.util.Observer;
  */
 public interface UI extends Observer {
 
-    public void loadUI(Player p, Map m);
+	public void loadUI(Core c);
+
+    public void close();
 
 }

@@ -16,25 +16,88 @@ import java.util.List;
  */
 public class Core implements Launcher {
 
+	private Player p;
+	private Map map;
+	private List<History> histories;
+
+	private MapBuilder mapBuilder;
+	private UI ui;
+
+	public Core(){
+		System.out.println("LANCEMENT");
+        ModuleLoader ml = ModuleLoader.getInstance();
+
+		/* Player */
+        p = new Player();
+        System.out.println("Initialisation du joueur...");
+
+		map=null;
+		histories = new ArrayList<History>();
+
+		List<String> l=ml.getPluginsForInterface(UI.class);
+		
+		/*
+       	if (l.size()==0)
+			exception;
+		*/		
+
+		UI ui = (UI) ml.load(l.get(0));
+		ui.loadUI(this);
+			
+	} 
+
+	public void setUI(UI newUi){
+		ui.close();
+		ui = newUi;
+		ui.loadUI(this);
+	}
+
+	public void setMapBuiler(MapBuilder mb){
+		mapBuilder = mb;
+		map = mapBuilder.getMap(histories);
+	}
+
+	public Player getPlayer(){
+		return p;
+	}
+
+	public Map getMap(){
+		return map;
+	}
+	
+
     @Override
-    public boolean run() {
+    public boolean run() { 
+		
+		Core c = new Core();
+
+		/*		
         System.out.println("LANCEMENT");
         ModuleLoader ml = ModuleLoader.getInstance();
 
-        /* UI */
-        Object o = ml.load("org.alma.aMazeZing.UI.ConsoleUI");
-        if (o == null) {
-            return false;
-        }
-        System.out.println("ConsoleUI loaded");
-
-        UI ui = (UI) o;
-
-        /* Player */
+		// Player
         Player p = new Player();
         System.out.println("Initialisation du joueur...");
 
-        List<String> l=ml.getPluginsForInterface(MapBuilder.class);
+
+        // UI
+		List<String> l=ml.getPluginsForInterface(UI.class);
+        System.out.print(l.size()+" UI(s) : ");
+        for (String s: l){
+            System.out.println(s+", ");
+        }
+
+        Object o = ml.load("org.alma.aMazeZing.GUI.GUI");
+        if (o == null) {
+            return false;
+        }
+        System.out.println("GUI loaded");
+
+        UI ui = (UI) o;
+		ui.loadUI(p);
+
+        /*
+		List<String> l=ml.getPluginsForInterface(MapBuilder.class);
         System.out.print(l.size()+" MapBuilder(s) : ");
         for (String s: l){
             System.out.println(s+", ");
@@ -45,12 +108,12 @@ public class Core implements Launcher {
             return false;
         }
 
-        /* Map */
+        // Map 
         MapBuilder map = (MapBuilder)  o;
         Map m = map.getMap(new ArrayList<History>());
 
         System.out.println("MapBuilderRandom chargée "+m.getWidth()+"-"+m.getHeight());
-        ui.loadUI(p, m);
+        ui.loadUI(p, m);*/
 
         return false;
     }
