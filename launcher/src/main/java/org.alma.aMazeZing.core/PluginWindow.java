@@ -1,19 +1,11 @@
 package org.alma.aMazeZing.core;
 
 import org.alma.aMazeZing.platform.ModuleLoader;
-import org.alma.aMazeZing.platform.Launcher;
-import java.awt.BorderLayout;
-import javax.swing.*;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import javax.swing.JList;
 
-public class PluginWindow extends JFrame
+import javax.swing.*;
+import java.awt.*;
+
+public class PluginWindow extends JFrame implements Runnable
 {
     private JTabbedPane onglet;
     //Compteur pour le nombre d'onglets
@@ -25,10 +17,38 @@ public class PluginWindow extends JFrame
 
     private Panel panel3;
 
+    private SimpleLauncher sl;
+    private ModuleLoader ml;
+
+    private boolean wait = true;
+
     public PluginWindow(SimpleLauncher sl, ModuleLoader ml){
+        this.sl = sl;
+        this.ml = ml;
+    }
+
+    public String getUiPlugin() {
+        return panel1.getValue();
+    }
+
+    public String getMapPlugin() {
+        return panel2.getValue();
+    }
+
+    public String getHistoryPlugin() {
+        return panel3.getValue();
+    }
+
+    public void stopWait() {
+        wait = false;
+    }
+
+    @Override
+    public void run() {
+
         this.setLocationRelativeTo(null);
         this.setTitle("Gestion des plugins");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(400, 200);
 
         onglet = new JTabbedPane();
@@ -53,17 +73,13 @@ public class PluginWindow extends JFrame
 
         this.getContentPane().add(pan, BorderLayout.SOUTH);
         this.setVisible(true);
-    }
 
-    public String getUiPlugin() {
-        return panel1.getValue();
-    }
-
-    public String getMapPlugin() {
-        return panel2.getValue();
-    }
-
-    public String getHistoryPlugin() {
-        return panel3.getValue();
+        while (wait) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

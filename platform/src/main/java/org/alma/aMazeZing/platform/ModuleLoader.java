@@ -76,7 +76,7 @@ public class ModuleLoader {
     private void listPluginsMetadata(String dir, Set<URL> urls) {
         File file = new File(dir);
 
-        System.out.println("Dossier "+ dir);
+        System.out.println("Dossier "+ file.getAbsolutePath());
 
 
         File[] files = file.listFiles();

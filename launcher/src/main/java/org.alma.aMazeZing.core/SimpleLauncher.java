@@ -1,7 +1,6 @@
 package org.alma.aMazeZing.core;
 
 import org.alma.aMazeZing.history.History;
-import org.alma.aMazeZing.map.Map;
 import org.alma.aMazeZing.platform.Launcher;
 import org.alma.aMazeZing.platform.ModuleLoader;
 import org.alma.aMazeZing.plugins.MapBuilder;
@@ -10,7 +9,6 @@ import org.alma.aMazeZing.plugins.UI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 
 public class SimpleLauncher implements Launcher, ActionListener
 {
@@ -19,11 +17,8 @@ public class SimpleLauncher implements Launcher, ActionListener
     private ModuleLoader ml;
 
     private PluginWindow pw;
-
-    private Player player;
-    private UI ui;
-    private MapBuilder map;
-    private History history;
+    private Thread tpw;
+    private SimpleGame game;
 
     public boolean run() {
         System.out.println("SimpleLauncher running !");
@@ -31,6 +26,19 @@ public class SimpleLauncher implements Launcher, ActionListener
         ml = ModuleLoader.getInstance();
 
         pw = new PluginWindow(this, ml);
+        tpw = new Thread(pw);
+
+        game = new SimpleGame();
+
+        tpw.start();
+
+        try {
+            tpw.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        game.run();
 
         return true;
 
@@ -41,17 +49,18 @@ public class SimpleLauncher implements Launcher, ActionListener
 
         try {
             loadMyDependencies();
-            start();
+            pw.stopWait();
         } catch (ClassNotFoundException e1) {
             e1.printStackTrace();
         }
 
         pw.dispatchEvent(new WindowEvent(pw, WindowEvent.WINDOW_CLOSING));
+
     }
 
     private void loadMyDependencies() throws ClassNotFoundException {
         //Player
-        player = new Player();
+        game.setPlayer(new Player());
 
         //UI
         Object o = ml.load(pw.getUiPlugin());
@@ -60,7 +69,7 @@ public class SimpleLauncher implements Launcher, ActionListener
         }
         System.out.println("UI chargée");
 
-        ui = (UI) o;
+        game.setUi((UI) o);
 
         //Map
         o =  ml.load(pw.getMapPlugin());
@@ -68,7 +77,7 @@ public class SimpleLauncher implements Launcher, ActionListener
             throw new ClassNotFoundException(pw.getMapPlugin());
         }
         System.out.println("Map chargée");
-        map = (MapBuilder)  o;
+        game.setMapBuilder((MapBuilder) o);
 
         //History
         o = ml.load(pw.getHistoryPlugin());
@@ -77,23 +86,6 @@ public class SimpleLauncher implements Launcher, ActionListener
         }
         System.out.println("History chargée");
 
-        history = (History) o;
-    }
-
-    public boolean start() {
-
-        boolean finished = false;
-
-        Map m = map.getMap(new ArrayList<History>());
-
-        ui.loadPlayer(player);
-        ui.loadMap(m);
-
-        while (!ui.isFinished()) {
-            ui.paint();
-        }
-
-        System.out.println("--- Fin ---");
-        return true;
+        game.setHistory((History) o);
     }
 }
