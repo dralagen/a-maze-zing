@@ -6,6 +6,7 @@ import org.alma.aMazeZing.plugins.MapBuilder;
 import org.alma.aMazeZing.plugins.UI;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created on 3/26/15.
@@ -37,6 +38,7 @@ public class SimpleGame implements Runnable {
 
     public void setHistory(History history) {
         this.history = history;
+        history.setPlayer(player);
     }
 
     @Override
@@ -45,15 +47,19 @@ public class SimpleGame implements Runnable {
 
         boolean finished = false;
 
-        Map m = mapBuilder.getMap(new ArrayList<History>());
+        List<History> hist = new ArrayList<History>();
+        hist.add(this.history);
+
+        Map m = mapBuilder.getMap(hist);
 
         ui.loadPlayer(player);
         ui.loadMap(m);
 
-        while (!ui.isFinished()) {
+        while (!history.isFinished()) {
             ui.paint();
         }
 
+        System.out.println("Félicitations, vous avez terminé toutes les quêtes !");
         System.out.println("--- Fin ---");
     }
 }

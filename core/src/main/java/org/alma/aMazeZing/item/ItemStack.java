@@ -24,7 +24,11 @@ public class ItemStack {
 	public Item getItem() {
 		return item;
 	}
-	
+
+    public int getAmount() {
+        return amount;
+    }
+
 	public int addItem(int number) {
 		amount+= number;
 		return amount;

@@ -4,6 +4,7 @@ import org.alma.aMazeZing.core.Player;
 import org.alma.aMazeZing.core.Position;
 import org.alma.aMazeZing.item.ItemStack;
 
+import java.nio.file.Paths;
 import java.util.Observable;
 
 /**
@@ -25,25 +26,81 @@ public class Map extends Observable {
 
     public void moveLeft(Player p) {
         if (p.getX() > 0) {
-            p.setX(p.getX()-1);
+            ItemStack item = getItem(p.getX()-1, p.getY());
+            if (item == null || item.getItem().canWalkOn()) {
+                p.setX(p.getX() - 1);
+            }
+
+            if (item != null && item.getItem().canWalkOn()) {
+                for (int i = 1; i <= item.getAmount(); i++) {
+                    item.getItem().onContact(p);
+                }
+                if(item.getItem().isRemovedAfterContact()) {
+                    this.items.remove(new Position(p.getX(), p.getY()));
+                    this.setChanged();
+                    notifyObservers();
+                }
+            }
         }
     }
 
     public void moveTop(Player p) {
         if (p.getY() > 0) {
-            p.setY(p.getY() - 1);
+            ItemStack item = getItem(p.getX(), p.getY()-1);
+            if (item == null || item.getItem().canWalkOn()) {
+                p.setY(p.getY() - 1);
+            }
+
+            if (item != null && item.getItem().canWalkOn()) {
+                for (int i = 1; i <= item.getAmount(); i++) {
+                    item.getItem().onContact(p);
+                }
+                if(item.getItem().isRemovedAfterContact()) {
+                    this.items.remove(new Position(p.getX(), p.getY()));
+                    this.setChanged();
+                    notifyObservers();
+                }
+            }
         }
     }
 
     public void moveRight(Player p) {
         if (p.getX() < width-1) {
-            p.setX(p.getX()+1);
+            ItemStack item = getItem(p.getX()+1, p.getY());
+            if (item == null || item.getItem().canWalkOn()) {
+                p.setX(p.getX() + 1);
+            }
+
+            if (item != null && item.getItem().canWalkOn()) {
+                for (int i = 1; i <= item.getAmount(); i++) {
+                    item.getItem().onContact(p);
+                }
+                if(item.getItem().isRemovedAfterContact()) {
+                    this.items.remove(new Position(p.getX(), p.getY()));
+                    this.setChanged();
+                    notifyObservers();
+                }
+            }
         }
     }
 
     public void moveBottom(Player p) {
         if (p.getY() < height - 1) {
-            p.setY(p.getY() + 1);
+            ItemStack item = getItem(p.getX(), p.getY()+1);
+            if (item == null || item.getItem().canWalkOn()) {
+                p.setY(p.getY() + 1);
+            }
+
+            if (item != null && item.getItem().canWalkOn()) {
+                for (int i = 1; i <= item.getAmount(); i++) {
+                    item.getItem().onContact(p);
+                }
+                if(item.getItem().isRemovedAfterContact()) {
+                    this.items.remove(new Position(p.getX(), p.getY()));
+                    this.setChanged();
+                    notifyObservers();
+                }
+            }
         }
     }
 

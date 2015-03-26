@@ -1,6 +1,7 @@
 package org.alma.aMazeZing.UI;
 
 import org.alma.aMazeZing.core.Player;
+import org.alma.aMazeZing.item.Item;
 import org.alma.aMazeZing.map.Map;
 import org.alma.aMazeZing.platform.Launcher;
 import org.alma.aMazeZing.plugins.UI;
@@ -61,6 +62,9 @@ public class ConsoleUI implements UI, Observer {
                 if (player.getX() == j && player.getY() == i) {
                     sb.append("P");
                 }
+                else if (map.getItem(j, i) != null) {
+                    sb.append(map.getItem(j,i).getItem().getChar());
+                }
                 else {
                     sb.append(" ");
                 }
@@ -119,10 +123,12 @@ public class ConsoleUI implements UI, Observer {
 		// addObservers
 
         if (o instanceof Player) {
-            paint();
+            if (arg instanceof Item) {
+                System.out.println("player receive an " + ((Item) arg).getName());
+            }
         }
 		else if (o instanceof Map) {
-            paint();
+            System.out.println("map change");
         }
 
     }
