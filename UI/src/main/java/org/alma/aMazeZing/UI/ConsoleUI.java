@@ -1,15 +1,11 @@
 package org.alma.aMazeZing.UI;
 
 import org.alma.aMazeZing.core.Player;
-import org.alma.aMazeZing.platform.Launcher;
+import org.alma.aMazeZing.map.Map;
 import org.alma.aMazeZing.platform.Launcher;
 import org.alma.aMazeZing.plugins.UI;
-import org.alma.aMazeZing.map.Map;
 
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
@@ -87,10 +83,10 @@ public class ConsoleUI implements UI, Observer {
         Scanner in = new Scanner(System.in);
         String line = "";
 
-        while (line.equalsIgnoreCase("s") == false
-                && line.equalsIgnoreCase("z") == false
-                && line.equalsIgnoreCase("q") == false
-                &&line.equalsIgnoreCase("d") == false) {
+        while (!line.equalsIgnoreCase("s")
+                && !line.equalsIgnoreCase("z")
+                && !line.equalsIgnoreCase("q")
+                && !line.equalsIgnoreCase("d")) {
 
             line = in.nextLine();
 

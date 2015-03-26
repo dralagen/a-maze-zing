@@ -1,15 +1,10 @@
 package org.alma.aMazeZing.map;
 
-import org.alma.aMazeZing.item.ItemStack;
-import org.alma.aMazeZing.core.Pair;
-import org.alma.aMazeZing.core.Position;
 import org.alma.aMazeZing.core.Player;
+import org.alma.aMazeZing.core.Position;
+import org.alma.aMazeZing.item.ItemStack;
 
-import java.util.ArrayList;
-import java.util.TreeMap;
-import java.util.List;
 import java.util.Observable;
-import java.util.Random;
 
 /**
  * Created on 2/12/15.
@@ -22,7 +17,7 @@ public class Map extends Observable {
 	public static int MIN_HEIGHT = 10;
 	
 
-	public Map(TreeMap<Position, ItemStack> its, int i, int j){
+	public Map(java.util.Map<Position, ItemStack> its, int i, int j){
 		items = its;
 		width = i;
 		height = j;
@@ -65,6 +60,6 @@ public class Map extends Observable {
 	private int width;
 	private int height;
 
-	private TreeMap<Position, ItemStack> items;
+	private java.util.Map<Position, ItemStack> items;
 
 }

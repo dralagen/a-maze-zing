@@ -3,11 +3,9 @@ package org.alma.aMazeZing.core;
 import org.alma.aMazeZing.history.History;
 import org.alma.aMazeZing.map.Map;
 import org.alma.aMazeZing.platform.Launcher;
-import org.alma.aMazeZing.platform.ModuleLoader;
 import org.alma.aMazeZing.plugins.MapBuilder;
 import org.alma.aMazeZing.plugins.UI;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
