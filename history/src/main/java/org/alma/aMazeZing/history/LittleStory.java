@@ -8,6 +8,8 @@ import org.alma.aMazeZing.quest.Quest;
 import org.alma.aMazeZing.requirement.Requirement;
 import org.alma.aMazeZing.reward.Reward;
 
+//import org.alma.aMazeZing.item.Boots;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -20,7 +22,11 @@ public class LittleStory implements History
     }
 
     public List<ItemStack> getItems() {
-        return new ArrayList<ItemStack>();
+        ArrayList<ItemStack> stacks = new ArrayList<ItemStack>();
+
+        //stacks.add(new ItemStack(new Boots(), 1));
+
+        return stacks;
     }
 
 }

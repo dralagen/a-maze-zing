@@ -9,5 +9,7 @@ package org.alma.aMazeZing.item;
 public interface Item {
 
 	public String getName();
-	
+
+    public char getChar();
+
 }

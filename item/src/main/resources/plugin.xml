@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<plugins>
+    <plugin>
+        <category>Item</category>
+        <name>Boots</name>
+        <classname>org.alma.aMazeZing.item.Boots</classname>
+        <description>New boots so that you looks like cool from now !</description>
+        <version>1.0</version>
+    </plugin>
+</plugins>
