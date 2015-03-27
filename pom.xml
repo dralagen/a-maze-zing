@@ -17,6 +17,8 @@
         <module>platform</module>
         <module>history</module>
         <module>launcher</module>
+        <module>GUI</module>
+        <module>ArrowController</module>
     </modules>
 
     <packaging>pom</packaging>

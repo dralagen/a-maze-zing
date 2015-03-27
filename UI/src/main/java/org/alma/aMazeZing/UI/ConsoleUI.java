@@ -4,9 +4,11 @@ import org.alma.aMazeZing.core.Player;
 import org.alma.aMazeZing.item.Item;
 import org.alma.aMazeZing.map.Map;
 import org.alma.aMazeZing.platform.Launcher;
+import org.alma.aMazeZing.plugins.Controller;
 import org.alma.aMazeZing.plugins.UI;
 
 import java.awt.event.KeyEvent;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
@@ -32,6 +34,11 @@ public class ConsoleUI implements UI, Observer {
     public void loadMap (Map m) {
         this.map = m;
         map.addObserver(this);
+    }
+
+    @Override
+    public void loadControllers(List<Controller> controller) {
+        //NOTHING TO DO
     }
 
     @Override
@@ -111,12 +118,12 @@ public class ConsoleUI implements UI, Observer {
 
     }
 
-    public void close(){}
-
     @Override
-    public boolean isFinished() {
-        return (player.getX() == 2 && player.getY() == 1);
+    public boolean isGraphical() {
+        return false;
     }
+
+    public void close(){}
 
     @Override
     public void update (Observable o, Object arg) {

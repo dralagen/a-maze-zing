@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<plugins>
+    <plugin>
+        <category>UI</category>
+        <name>GUI</name>
+        <classname>org.alma.aMazeZing.UI.GUI</classname>
+        <description>A very nice and pleasant Graphical User Interface</description>
+        <version>1.0</version>
+    </plugin>
+</plugins>

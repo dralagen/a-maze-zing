@@ -2,6 +2,7 @@ package org.alma.aMazeZing.core;
 
 import org.alma.aMazeZing.history.History;
 import org.alma.aMazeZing.map.Map;
+import org.alma.aMazeZing.plugins.Controller;
 import org.alma.aMazeZing.plugins.MapBuilder;
 import org.alma.aMazeZing.plugins.UI;
 
@@ -19,6 +20,7 @@ public class SimpleGame implements Runnable {
     private UI ui;
     private MapBuilder mapBuilder;
     private History history;
+    private List<Controller> controllers;
 
     public SimpleGame() {
 
@@ -34,6 +36,10 @@ public class SimpleGame implements Runnable {
 
     public void setMapBuilder(MapBuilder mapBuilder) {
         this.mapBuilder = mapBuilder;
+    }
+
+    public void setControllers(List<Controller> controllers) {
+        this.controllers = controllers;
     }
 
     public void setHistory(History history) {
@@ -54,6 +60,14 @@ public class SimpleGame implements Runnable {
 
         ui.loadPlayer(player);
         ui.loadMap(m);
+
+        if (ui.isGraphical()) {
+            for (Controller c : controllers) {
+                c.loadMap(m);
+                c.loadPlayer(player);
+            }
+            ui.loadControllers(controllers);
+        }
 
         while (!history.isFinished()) {
             ui.paint();

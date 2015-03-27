@@ -3,12 +3,15 @@ package org.alma.aMazeZing.core;
 import org.alma.aMazeZing.history.History;
 import org.alma.aMazeZing.platform.Launcher;
 import org.alma.aMazeZing.platform.ModuleLoader;
+import org.alma.aMazeZing.plugins.Controller;
 import org.alma.aMazeZing.plugins.MapBuilder;
 import org.alma.aMazeZing.plugins.UI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SimpleLauncher implements Launcher, ActionListener
 {
@@ -87,5 +90,20 @@ public class SimpleLauncher implements Launcher, ActionListener
         System.out.println("History chargée");
 
         game.setHistory((History) o);
+
+        List<String> controllersNames = ml.getPluginsForInterface(org.alma.aMazeZing.plugins.Controller.class);
+        List<Controller> controllers = new ArrayList<Controller>();
+
+        for (String ctrlName : controllersNames) {
+            o = ml.load(ctrlName);
+            if (o == null) {
+                throw new ClassNotFoundException(ctrlName);
+            }
+            else
+            {
+                controllers.add((Controller) o);
+            }
+        }
+        game.setControllers(controllers);
     }
 }

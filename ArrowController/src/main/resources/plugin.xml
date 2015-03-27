@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<plugins>
+    <plugin>
+        <category>Controller</category>
+        <name>ArrowController</name>
+        <classname>org.alma.aMazeZing.controller.ArrowController</classname>
+        <description>A cool way to manipulate your game thanks to your keyboard (for GUI)</description>
+        <version>1.0</version>
+    </plugin>
+</plugins>
