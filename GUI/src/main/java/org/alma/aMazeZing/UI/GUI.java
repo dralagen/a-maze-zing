@@ -123,18 +123,22 @@ public class GUI implements UI, Observer
 
     public class GUIPane extends JPanel {
 
+        private Player player;
+        private Map map;
         private int columnCount = 5;
         private int rowCount = 5;
         private List<Rectangle> cells;
         private Point selectedCell;
 
         public GUIPane(Player p, Map m) {
+            this.player = p;
+            this.map = m;
             cells = new ArrayList<>(columnCount * rowCount);
         }
 
         @Override
         public Dimension getPreferredSize() {
-            return new Dimension(200, 200);
+            return new Dimension(500, 500);
         }
 
         @Override
@@ -152,27 +156,34 @@ public class GUI implements UI, Observer
             int width = getWidth();
             int height = getHeight();
 
-            int cellWidth = width / columnCount;
-            int cellHeight = height / rowCount;
+            int cellWidth = width / map.getWidth();
+            int cellHeight = height / map.getHeight();
 
-            int xOffset = (width - (columnCount * cellWidth)) / 2;
-            int yOffset = (height - (rowCount * cellHeight)) / 2;
+            int xOffset = (width - (map.getWidth() * cellWidth)) / 2;
+            int yOffset = (height - (map.getHeight() * cellHeight)) / 2;
 
             //TODO : draw the player and the map accordingly
 
-            if (cells.isEmpty()) {
-                for (int row = 0; row < rowCount; row++) {
-                    for (int col = 0; col < columnCount; col++) {
-                        Rectangle cell = new Rectangle(
-                                xOffset + (col * cellWidth),
-                                yOffset + (row * cellHeight),
-                                cellWidth,
-                                cellHeight);
-                        cells.add(cell);
+            g2d.setColor(Color.GRAY);
+            for (int row = 0; row < map.getHeight(); row++) {
+                for (int col = 0; col < map.getWidth(); col++) {
+                    Rectangle cell = new Rectangle(
+                            xOffset + (col * cellWidth),
+                            yOffset + (row * cellHeight),
+                            cellWidth,
+                            cellHeight);
+                    g2d.draw(cell);
+
+                    if (player.getX() == col && player.getY() == row) {
+                        g2d.drawString("P", xOffset + (col * cellWidth), yOffset + (row * cellHeight));
+                    }
+                    else if (map.getItem(col, row) != null) {
+                        g2d.drawString(Character.toString(map.getItem(col,row).getItem().getChar()), xOffset + (col * cellWidth), yOffset + (row * cellHeight));
                     }
                 }
             }
 
+            /*
             if (selectedCell != null) {
 
                 int index = selectedCell.x + (selectedCell.y * columnCount);
@@ -181,11 +192,7 @@ public class GUI implements UI, Observer
                 g2d.fill(cell);
 
             }
-
-            g2d.setColor(Color.GRAY);
-            for (Rectangle cell : cells) {
-                g2d.draw(cell);
-            }
+            */
 
             g2d.dispose();
         }
