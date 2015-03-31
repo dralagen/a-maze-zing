@@ -73,6 +73,10 @@ public class SimpleGame implements Runnable {
             ui.paint();
         }
 
+        //TODO : Display a "Game Over" scene
+
+        ui.close();
+
         System.out.println("Félicitations, vous avez terminé toutes les quêtes !");
         System.out.println("--- Fin ---");
     }

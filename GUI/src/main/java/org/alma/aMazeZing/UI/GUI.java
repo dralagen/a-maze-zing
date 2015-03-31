@@ -6,6 +6,7 @@ import org.alma.aMazeZing.core.Player;
 import org.alma.aMazeZing.item.Item;
 import org.alma.aMazeZing.plugins.Controller;
 
+import java.awt.event.*;
 import java.lang.Override;
 import java.util.Observer;
 import java.util.Observable;
@@ -18,17 +19,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent;
 
 public class GUI implements UI, Observer
 {
@@ -42,6 +38,8 @@ public class GUI implements UI, Observer
     private JFrame frame;
 
     private GUIPane pane = null;
+
+    private KeyListener controller;
 
     public GUI() {
         controllers = new ArrayList<Controller>();
@@ -71,10 +69,10 @@ public class GUI implements UI, Observer
     @Override
     public void paint() {
         if (pane == null) {
-            GUIPane pane = new GUIPane(player, map);
+            pane = new GUIPane(player, map);
 
             /** add listener for keyboard **/
-            this.frame.addKeyListener(new KeyListener() {
+            controller = new KeyListener() {
                 @Override
                 public void keyPressed(KeyEvent e) {
                     for (Controller ctrl : controllers) {
@@ -87,7 +85,9 @@ public class GUI implements UI, Observer
 
                 @Override
                 public void keyTyped(KeyEvent e) {}
-            });
+            };
+
+            this.frame.addKeyListener(controller);
 
             frame.add(pane);
             frame.pack();
@@ -103,7 +103,8 @@ public class GUI implements UI, Observer
 
     @Override
     public void close() {
-
+        this.frame.removeKeyListener(controller);
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
     @Override
@@ -175,10 +176,10 @@ public class GUI implements UI, Observer
                     g2d.draw(cell);
 
                     if (player.getX() == col && player.getY() == row) {
-                        g2d.drawString("P", xOffset + (col * cellWidth), yOffset + (row * cellHeight));
+                        g2d.drawString("P", xOffset + (col * cellWidth) + (cellWidth / 2), yOffset + (row * cellHeight) + (cellHeight/2));
                     }
                     else if (map.getItem(col, row) != null) {
-                        g2d.drawString(Character.toString(map.getItem(col,row).getItem().getChar()), xOffset + (col * cellWidth), yOffset + (row * cellHeight));
+                        g2d.drawString(Character.toString(map.getItem(col,row).getItem().getChar()), xOffset + (col * cellWidth) + (cellWidth / 2), yOffset + (row * cellHeight) + (cellHeight/2));
                     }
                 }
             }
