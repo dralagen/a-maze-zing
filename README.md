@@ -5,8 +5,13 @@ Compilation & launch
 ---------------------
 
 ```
-mvn clean install && java -jar core/target/core*.jar
+mvn clean install && java -jar platform/target/platform-*.jar
 ```
+
+By default the platform watch in `platform/plugin`, to load all plugin.
+But this path are not fixed, you can add other path on `platform/src/main/resources/modules.properties` separared by coma.
+
+
 
 How to add Module
 ------------------
